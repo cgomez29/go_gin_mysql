@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  mysql_db:
+    container_name: mysql_gin
+    image: mysql 
+    restart: always
+    ports: 
+      - 3306:3306
+    volumes: 
+      - ./dbfiles:/docker-entrypoint-initdb.d
+      - /var/lib/mysql:/var/lib/mysql
+    environment:
+      MYSQL_USER: gomez
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: api_go
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
